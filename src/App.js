@@ -37,6 +37,10 @@ class App extends React.Component {
     this.setState({ shouldShowConfirmation: true });
   }
 
+  signIn() {
+    console.log('Not yet implemented');
+  }
+
   isFormValid() {
     const { firstName, emailAddress, password} = this.state;
     let isValid = true;
@@ -52,8 +56,8 @@ class App extends React.Component {
     const { firstName, emailAddress, password} = this.state;
     return (
       <Fragment>
-        <div className='pre-title'>Let's</div>
-        <div className='title'>Sign Up</div>
+        <div className='weaker-title'>Let's</div>
+        <div className='stronger-title'>Sign Up</div>
         <div className='verbiage'>Use the form below to sign up for this super awesome service. You're only a few steps away!</div>
         <div className='text-input-label'>First Name</div>
         <input className='text-input' type='text' value={firstName} onChange={this.updateFirstName}></input>
@@ -62,15 +66,20 @@ class App extends React.Component {
         <div className='text-input-label'>Password</div>
         <input className='text-input' type='password' value={password} onChange={this.updatePassword}></input>
         <br/>
-        <button onClick={this.signUp}>Sign Up</button>
+        <button className='stylish-red-button' onClick={this.signUp}>Sign Up</button>
       </Fragment>
     );
   }
 
   getConfirmationContent() {
+    const { firstName, emailAddress } = this.state;
     return (
       <Fragment>
-        Confirmation Content
+        <div className='weaker-title'>Welcome,</div>
+        <div className='stronger-title'>{firstName}!</div>
+        <div className='verbiage'>You have been registered for this awesome service. Please check your email listed below for instructions.</div>
+        <div className='bolder-and-stronger'>{emailAddress}</div>
+        <button className='stylish-red-button' onClick={this.signIn}>Sign In</button>
       </Fragment>
     );
   }
