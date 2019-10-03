@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import { CONFIRMATION_VERBIAGE, FORM_VERBIAGE } from './constants';
 
 class App extends React.Component {
   constructor() {
@@ -46,6 +47,9 @@ class App extends React.Component {
     let isValid = true;
 
     // For brevity, only checking for truthiness i.e. not empty strings
+    // Also, calling 'alert' here violates the single responsibility principle - helper
+    // function like isFormValid should only compute its boolean and return, not output to the user
+
     if (!firstName.trim()) { alert('First name is required'); isValid = false; }
     else if (!emailAddress.trim()) { alert('Email address is required'); isValid = false; }
     else if (!password.trim()) { alert('Password is required'); isValid = false; }
@@ -57,13 +61,17 @@ class App extends React.Component {
     return (
       <div className='content-container'>
         <div className='title'>Let's<br/><strong>Sign Up</strong></div>
-        <div className='verbiage'>Use the form below to sign up for this super awesome service. You're only a few steps away!</div>
+        <div className='verbiage'>{FORM_VERBIAGE}</div>
+
         <div className='text-input-label'>First Name</div>
         <input className='text-input' type='text' value={firstName} onChange={this.updateFirstName}></input>
+
         <div className='text-input-label'>Email Address</div>
         <input className='text-input' type='text' value={emailAddress} onChange={this.updateEmailAddress}></input>
+
         <div className='text-input-label'>Password</div>
         <input className='text-input' type='password' value={password} onChange={this.updatePassword}></input>
+
         <br/>
         <button className='stylish-red-button' onClick={this.signUp}>Sign Up</button>
       </div>
@@ -75,7 +83,7 @@ class App extends React.Component {
     return (
       <div className='content-container'>
         <div className='title'>Welcome,<br/><strong>{firstName}!</strong></div>
-        <div className='verbiage'>You have been registered for this awesome service. Please check your email listed below for instructions.</div>
+        <div className='verbiage'>{CONFIRMATION_VERBIAGE}</div>
         <div><strong>{emailAddress}</strong></div>
         <button className='stylish-red-button' onClick={this.signIn}>Sign In</button>
       </div>
@@ -83,7 +91,9 @@ class App extends React.Component {
   }
 
   render() {
-    if (this.state.shouldShowConfirmation) return this.getConfirmationContent();
+    if (this.state.shouldShowConfirmation) {
+      return this.getConfirmationContent();
+    }
     return this.getFormContent();
   }
 }

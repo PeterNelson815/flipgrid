@@ -1,0 +1,2 @@
+export const CONFIRMATION_VERBIAGE = 'You have been registered for this awesome service. Please check your email listed below for instructions.';
+export const FORM_VERBIAGE = 'Use the form below to sign up for this super awesome service. You\'re only a few steps away!';
