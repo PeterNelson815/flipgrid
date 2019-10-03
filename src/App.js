@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import './App.css';
 
 class App extends React.Component {
@@ -55,9 +55,8 @@ class App extends React.Component {
   getFormContent() {
     const { firstName, emailAddress, password} = this.state;
     return (
-      <Fragment>
-        <div className='weaker-title'>Let's</div>
-        <div className='stronger-title'>Sign Up</div>
+      <div className='content-container'>
+        <div className='title'>Let's<br/><strong>Sign Up</strong></div>
         <div className='verbiage'>Use the form below to sign up for this super awesome service. You're only a few steps away!</div>
         <div className='text-input-label'>First Name</div>
         <input className='text-input' type='text' value={firstName} onChange={this.updateFirstName}></input>
@@ -67,20 +66,19 @@ class App extends React.Component {
         <input className='text-input' type='password' value={password} onChange={this.updatePassword}></input>
         <br/>
         <button className='stylish-red-button' onClick={this.signUp}>Sign Up</button>
-      </Fragment>
+      </div>
     );
   }
 
   getConfirmationContent() {
     const { firstName, emailAddress } = this.state;
     return (
-      <Fragment>
-        <div className='weaker-title'>Welcome,</div>
-        <div className='stronger-title'>{firstName}!</div>
+      <div className='content-container'>
+        <div className='title'>Welcome,<br/><strong>{firstName}!</strong></div>
         <div className='verbiage'>You have been registered for this awesome service. Please check your email listed below for instructions.</div>
-        <div className='bolder-and-stronger'>{emailAddress}</div>
+        <div><strong>{emailAddress}</strong></div>
         <button className='stylish-red-button' onClick={this.signIn}>Sign In</button>
-      </Fragment>
+      </div>
     );
   }
 
